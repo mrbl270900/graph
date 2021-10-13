@@ -30,12 +30,36 @@ public class graph {
 public void prim(){
         int[] D = new int[connectionmatrix.length];
         int[] P=new int[connectionmatrix.length];
+        Myheap<Pair> q = new Myheap<>();
+        Pair[] VertexPair= new Pair[connectionmatrix.length];
         for(int i=0; i<connectionmatrix.length;i++){
             D[i]=Integer.MAX_VALUE;
             P[i]=-1;
-
+            Pair newPair = new Pair(D[i],i);
+            q.insert(newPair);
+            VertexPair[i]=newPair;
         }
-
+        if(D.length>0){
+            D[0]=0;
+        }
+        int pos=q.getPosition(VertexPair[0]);
+        VertexPair[0].distence=0;
+        q.decreasekey(pos);
+        int MST=0;
 }
 
+}
+class Pair implements Comparable<Pair>{
+        Integer distence;
+        Integer index;
+
+        public Pair(int distence, int index){
+            this.distence = distence;
+            this.index = index;
+        }
+
+    @Override
+    public int compareTo(Pair o) {
+        return distence.compareTo(o.distence);
+    }
 }

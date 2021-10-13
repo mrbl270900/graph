@@ -1,13 +1,18 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Myheap <T extends Comparable>{
+public class Myheap<T extends Comparable>{
+    HashMap<T, Integer>  positionTable=new HashMap<>();
     ArrayList<T> minheap;
     private int size;
     public Myheap(){
         this.minheap=new ArrayList<T>();
         this.size=0;
+    }
+    public int getPosition(T item){
+        return  positionTable.get(item);
     }
     private int parent(int pos){
         return (pos-1)/2;
@@ -22,9 +27,12 @@ public class Myheap <T extends Comparable>{
         T dummy=minheap.get(p1);
         minheap.set(p1,minheap.get(p2));
         minheap.set(p2,dummy);
+        positionTable.put(minheap.get(p1),p1);
+        positionTable.put(minheap.get(p2),p2);
     }
     public void insert(T item){
         minheap.add(item);
+        positionTable.put(item,size);
         size++;
         decreasekey(size-1);
     }
@@ -46,6 +54,7 @@ public class Myheap <T extends Comparable>{
     public T extractMin(){
         T min=minheap.get(0);
         minheap.set(0,minheap.get(size-1));
+        positionTable.put(minheap.get(0),0);
         size--;
         increasekey(0);
         return min;
@@ -53,7 +62,7 @@ public class Myheap <T extends Comparable>{
     private boolean movedown(int pos){
         boolean leftsmaller= leftChild(pos)<size && minheap.get(leftChild(pos)).compareTo(minheap.get(pos))<0;
         boolean rightsmaller = rightChild(pos)<size && minheap.get(rightChild(pos)).compareTo(minheap.get(pos))<0;
-        return leftsmaller || rightsmaller;
+        return (leftsmaller || rightsmaller);
     }
     public void increasekey(int pos){
         int currentpos = pos;

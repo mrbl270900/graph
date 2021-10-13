@@ -46,6 +46,21 @@ public void prim(){
         VertexPair[0].distence=0;
         q.decreasekey(pos);
         int MST=0;
+        while (!q.isEmpty()){
+            Pair u = q.extractMin();
+            for (int v = 0; v < connectionmatrix.length; v++) {
+                if(connectionmatrix[u.index][v]==1 && matrixweigth[u.index][v]<D[v]){
+                    D[v]=matrixweigth[u.index][v];
+                    P[v]=u.index;
+                    pos=q.getPosition(VertexPair[v]);
+                    VertexPair[v].distence=D[v];
+                    q.decreasekey(pos);
+                }
+            }
+            MST+=D[u.index];
+            System.out.println("Edege " + P[u.index] + "," + u.index + " Weight " + D[u.index]);
+        }
+    System.out.println("MST size " + MST);
 }
 
 }

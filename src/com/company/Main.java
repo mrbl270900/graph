@@ -13,12 +13,15 @@ public class Main {
         matrix.addedge(2,3,1);
         matrix.addedge(3,4,1);
         matrix.addedge(3,6,1);
+        matrix.addedge(4,2,1);
         matrix.addedge(4,3,3);
         matrix.addedge(4,6,4);
         matrix.addedge(4,5,3);
         matrix.addedge(5,6,1);
+
         
         matrix.printmatrix();
+        matrix.prim();
 
     }
 }

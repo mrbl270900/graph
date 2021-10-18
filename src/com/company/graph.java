@@ -61,6 +61,28 @@ public void prim(){
             System.out.println("Edege " + P[u.index] + "," + u.index + " Weight " + D[u.index]);
         }
     System.out.println("MST size " + MST);
+
+        /*
+Prims(G):
+Q=Ø (empty min-heap/priorityQue)
+For each vertex v in G
+D[v]=infinity;
+P[v]=null;
+Q.offer(D[v],v);
+D[s]=0;
+Q.update(s);
+While Q is not empty
+u = Q.poll; // remove smallest D[u]
+for each edge (u,v) (outedge)
+if weight (u,v) < D[v] && u not visited
+D[v]= w(u,v);
+P[v]=u;
+Q.update(v);//get to right position
+end if
+end for
+Mark u as visited
+End while*/
+
 }
 
 }

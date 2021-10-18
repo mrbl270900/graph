@@ -29,7 +29,7 @@ public class graph {
 
 public void prim(){
         int[] D = new int[connectionmatrix.length];
-        int[] P=new int[connectionmatrix.length];
+        int[] P = new int[connectionmatrix.length];
         Myheap<Pair> q = new Myheap<>();
         Pair[] VertexPair= new Pair[connectionmatrix.length];
         for(int i=0; i<connectionmatrix.length;i++){
@@ -65,7 +65,7 @@ public void prim(){
 
 }
 class Pair implements Comparable<Pair>{
-        Integer distence;
+        Integer distence;   
         Integer index;
 
         public Pair(int distence, int index){

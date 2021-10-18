@@ -34,7 +34,6 @@ public class AdjacencyGraph {
         int[] D = new int[vertices.size()];
         int[] P = new int[vertices.size()];
         Myheap<Vertex> Q = new Myheap<>();
-        ArrayList<Pair> VertexPairs=new ArrayList<>();
         boolean[] visited =  new boolean[vertices.size()];
         Arrays.fill(D, Integer.MAX_VALUE);
         Arrays.fill(P,-1);
@@ -45,7 +44,6 @@ public class AdjacencyGraph {
       }
 
       for(int i=0; i<vertices.size();i++){
-          VertexPairs.add(new Pair(D[i], i));
           Q.insert(vertices.get(i));
       }
 
@@ -56,11 +54,10 @@ public class AdjacencyGraph {
           Vertex u = Q.extractMin();
           System.out.println(u.dist);
           for (int v = 0; v < u.OutEdges.size(); v++) {
-              if(u.OutEdges.get(v).weight<D[v] && !visited[v]) {
+              if(u.OutEdges.get(v).weight<D[v] && !visited[Integer.parseInt(u.OutEdges.get(v).to.name)]) {
                   D[v] = u.OutEdges.get(v).weight;
                   P[v] = Integer.parseInt(u.name);
-                  pos = Q.getPosition(vertices.get(v));
-                  VertexPairs.get(v).distence = u.OutEdges.get(v).weight;
+                  pos = Q.getPosition(vertices.get(Integer.parseInt(u.OutEdges.get(v).to.name)));
                   Q.decreasekey(pos);
               }
           }

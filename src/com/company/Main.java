@@ -33,6 +33,7 @@ public class Main {
         Vertex e = new Vertex("4");
         Vertex f = new Vertex( "5");
         Vertex g = new Vertex("6");
+
         MyGraph.addVertex(a);
         MyGraph.addVertex(b);
         MyGraph.addVertex(c);
@@ -40,19 +41,37 @@ public class Main {
         MyGraph.addVertex(e);
         MyGraph.addVertex(f);
         MyGraph.addVertex(g);
+
         MyGraph.addEdge(a,b,1);
         MyGraph.addEdge(a,c, 5);
         MyGraph.addEdge(a,e,3);
+
+        MyGraph.addEdge(b,a,1);
         MyGraph.addEdge(b,e,1);
         MyGraph.addEdge(b,f,7);
+
         MyGraph.addEdge(c,d,1);
+        MyGraph.addEdge(c,a,5);
+
         MyGraph.addEdge(d,e,1);
         MyGraph.addEdge(d,g, 1);
+        MyGraph.addEdge(d,c, 1);
+
         MyGraph.addEdge(e,c, 1);
         MyGraph.addEdge(e,d,3);
         MyGraph.addEdge(e,f, 3);
         MyGraph.addEdge(e,g,4);
+        MyGraph.addEdge(e,a,3);
+        MyGraph.addEdge(e,b,1);
+        MyGraph.addEdge(e,d,1);
+
         MyGraph.addEdge(f,g, 1);
+        MyGraph.addEdge(f,e, 3);
+        MyGraph.addEdge(f,a, 7);
+
+        MyGraph.addEdge(g,f, 1);
+        MyGraph.addEdge(g,d, 1);
+
         //MyGraph.PrintGraph();
         MyGraph.prim();
 

@@ -3,26 +3,29 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        graph matrix = new graph();
+        MatrixGraph matrix = new MatrixGraph(7);
 
-        matrix.setmatrix(7);
-        matrix.addedge(0,1,1);
-        matrix.addedge(0,2,5);
-        matrix.addedge(0,4,3);
-        matrix.addedge(1,4,1);
-        matrix.addedge(1,5,7);
-        matrix.addedge(2,3,1);
-        matrix.addedge(3,4,1);
-        matrix.addedge(3,5,1);
-        matrix.addedge(4,2,1);
-        matrix.addedge(4,3,3);
-        matrix.addedge(4,5,3);
-        matrix.addedge(4,6,4);
-        matrix.addedge(4,6,1);
+        matrix.addEdge(0,1,1);
+        matrix.addEdge(0,2,5);
+        matrix.addEdge(0,4,3);
+
+        matrix.addEdge(1,4,1);
+        matrix.addEdge(1,5,7);
+
+        matrix.addEdge(2,3,1);
+
+        matrix.addEdge(3,4,1);
+        matrix.addEdge(3,5,1);
+
+        matrix.addEdge(4,2,1);
+        matrix.addEdge(4,3,3);
+        matrix.addEdge(4,5,3);
+        matrix.addEdge(4,6,4);
+        matrix.addEdge(4,6,1);
 
 
-        matrix.printmatrix();
-        matrix.prim();
+        matrix.printGraph();
+        matrix.MSTPrims();
         System.out.println("");
 
         AdjacencyGraph MyGraph=new AdjacencyGraph();
@@ -46,31 +49,19 @@ public class Main {
         MyGraph.addEdge(a,c, 5);
         MyGraph.addEdge(a,e,3);
 
-        MyGraph.addEdge(b,a,1);
         MyGraph.addEdge(b,e,1);
         MyGraph.addEdge(b,f,7);
 
         MyGraph.addEdge(c,d,1);
-        MyGraph.addEdge(c,a,5);
 
         MyGraph.addEdge(d,e,1);
-        MyGraph.addEdge(d,g, 1);
-        MyGraph.addEdge(d,c, 1);
+        MyGraph.addEdge(d,f, 1);
 
         MyGraph.addEdge(e,c, 1);
         MyGraph.addEdge(e,d,3);
         MyGraph.addEdge(e,f, 3);
         MyGraph.addEdge(e,g,4);
-        MyGraph.addEdge(e,a,3);
-        MyGraph.addEdge(e,b,1);
-        MyGraph.addEdge(e,d,1);
-
-        MyGraph.addEdge(f,g, 1);
-        MyGraph.addEdge(f,e, 3);
-        MyGraph.addEdge(f,a, 7);
-
-        MyGraph.addEdge(g,f, 1);
-        MyGraph.addEdge(g,d, 1);
+        MyGraph.addEdge(e,g,1);
 
         //MyGraph.PrintGraph();
         MyGraph.prim();

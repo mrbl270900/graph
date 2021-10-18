@@ -33,8 +33,9 @@ public class AdjacencyGraph {
   public void prim(){
         int[] D = new int[vertices.size()];
         int[] P = new int[vertices.size()];
-        Myheap<Vertex> Q = new Myheap<>();
+        MinHeap<Vertex> Q = new MinHeap<>();
         boolean[] visited =  new boolean[vertices.size()];
+        ArrayList<Vertex> VertexPairs=new ArrayList<>();
         Arrays.fill(D, Integer.MAX_VALUE);
         Arrays.fill(P,-1);
         Arrays.fill(visited,false);
@@ -44,27 +45,28 @@ public class AdjacencyGraph {
       }
 
       for(int i=0; i<vertices.size();i++){
-          Q.insert(vertices.get(i));
+          Q.Insert(vertices.get(i));
       }
 
       int pos=Q.getPosition(vertices.get(0));
+      vertices.get(0).dist=0;
       Q.decreasekey(pos);
       int MST=0;
       while (!Q.isEmpty()){
           Vertex u = Q.extractMin();
-          System.out.println(u.dist);
           for (int v = 0; v < u.OutEdges.size(); v++) {
               if(u.OutEdges.get(v).weight<D[v] && !visited[Integer.parseInt(u.OutEdges.get(v).to.name)]) {
                   D[v] = u.OutEdges.get(v).weight;
                   P[v] = Integer.parseInt(u.name);
                   pos = Q.getPosition(vertices.get(Integer.parseInt(u.OutEdges.get(v).to.name)));
+                  vertices.get(v).dist=u.OutEdges.get(v).weight;
                   Q.decreasekey(pos);
               }
           }
-          visited[Integer.parseInt(u.name)] = true;
+          //visited[Integer.parseInt(u.name)] = true;
           MST+=D[Integer.parseInt(u.name)];
       }
-      System.out.println("MST size " + MST);
+      System.out.println("Minimum spanning tree Dsitance: " +MST);
       for(int i=0; i< vertices.size();i++)
       {
           System.out.println(" parent "+ P[i] + " to " + i + " EdgeWeight: " + D[i]);
@@ -83,9 +85,6 @@ class Vertex implements Comparable<Vertex>{
     }
     public void addOutEdge(Edge e) {
         OutEdges.add(e);
-        if(e.weight<this.dist){
-            this.dist = e.weight;
-        }
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class AdjacencyGraph {
   ArrayList<Vertex> vertices;
@@ -31,47 +32,46 @@ public class AdjacencyGraph {
       }
   }
   public void prim(){
-        int[] D = new int[vertices.size()];
-        int[] P = new int[vertices.size()];
-        MinHeap<Vertex> Q = new MinHeap<>();
-        boolean[] visited =  new boolean[vertices.size()];
-        ArrayList<Vertex> VertexPairs=new ArrayList<>();
-        Arrays.fill(D, Integer.MAX_VALUE);
-        Arrays.fill(P,-1);
-        Arrays.fill(visited,false);
+      MinHeap <Pair> Q = new MinHeap<>();
+      ArrayList <Pair> V = new ArrayList<>();
+      int[] Distance =new int[vertices.size()];
+      int[] predecessor = new int[vertices.size()];
+      int MST = 0;
+      int Holder = 0;
 
-      if(D.length>0){
-          D[0]=0;
+      Arrays.fill(Distance, Integer.MAX_VALUE);
+      Arrays.fill(predecessor,-1);
+      if (vertices.size()>0){
+          Distance[0]=0;
+          vertices.get(0).dist = 0;
       }
 
-      for(int i=0; i<vertices.size();i++){
-          Q.Insert(vertices.get(i));
+      for (int i = 0; i < vertices.size(); i++) {
+          V.add(new Pair(Distance[i], i));
+          Q.Insert(new Pair(Distance[i], i));
       }
 
-      int pos=Q.getPosition(vertices.get(0));
-      vertices.get(0).dist=0;
-      Q.decreasekey(pos);
-      int MST=0;
       while (!Q.isEmpty()){
-          Vertex u = Q.extractMin();
-          for (int v = 0; v < u.OutEdges.size(); v++) {
-              if(u.OutEdges.get(v).weight<D[v] && !visited[Integer.parseInt(u.OutEdges.get(v).to.name)]) {
-                  D[v] = u.OutEdges.get(v).weight;
-                  P[v] = Integer.parseInt(u.name);
-                  pos = Q.getPosition(vertices.get(Integer.parseInt(u.OutEdges.get(v).to.name)));
-                  vertices.get(v).dist=u.OutEdges.get(v).weight;
-                  Q.decreasekey(pos);
+          Pair u=Q.extractMin();
+          for (int v = 0; v < vertices.size(); v++) {
+                  if(u.distance<Distance[v] && 1==vertices.get(u.index).OutEdges.get(v).to.name.compareTo(String.valueOf(v)))
+                  {
+                          Distance[v] = vertices.get(u.index).OutEdges.get(v).weight;
+                          predecessor[v] = u.index;
+                          int pos = Q.getPosition(V.get(v));
+                          V.get(v).distance = vertices.get(u.index).OutEdges.get(v).weight;
+                          Q.decreasekey(pos);
               }
           }
-          //visited[Integer.parseInt(u.name)] = true;
-          MST+=D[Integer.parseInt(u.name)];
+          MST+=Distance[u.index];
       }
       System.out.println("Minimum spanning tree Dsitance: " +MST);
       for(int i=0; i< vertices.size();i++)
       {
-          System.out.println(" parent "+ P[i] + " to " + i + " EdgeWeight: " + D[i]);
+          System.out.println(" parent "+ predecessor[i] + " to " + i + " EdgeWeight: " + Distance[i]);
       }
   }
+
 
 }
 

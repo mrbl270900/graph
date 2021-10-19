@@ -24,6 +24,7 @@ public class Main {
         matrix.addEdge(4,6,1);
 
 
+
         matrix.printGraph();
         matrix.MSTPrims();
         System.out.println("");
@@ -46,7 +47,7 @@ public class Main {
         MyGraph.addVertex(g);
 
         MyGraph.addEdge(a,b,1);
-        MyGraph.addEdge(a,c, 5);
+        MyGraph.addEdge(a,c,5);
         MyGraph.addEdge(a,e,3);
 
         MyGraph.addEdge(b,e,1);
@@ -55,11 +56,11 @@ public class Main {
         MyGraph.addEdge(c,d,1);
 
         MyGraph.addEdge(d,e,1);
-        MyGraph.addEdge(d,f, 1);
+        MyGraph.addEdge(d,f,1);
 
-        MyGraph.addEdge(e,c, 1);
+        MyGraph.addEdge(e,c,1);
         MyGraph.addEdge(e,d,3);
-        MyGraph.addEdge(e,f, 3);
+        MyGraph.addEdge(e,f,3);
         MyGraph.addEdge(e,g,4);
         MyGraph.addEdge(e,g,1);
 

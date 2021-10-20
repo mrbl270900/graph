@@ -32,44 +32,41 @@ public class AdjacencyGraph {
       }
   }
   public void prim(){
-      MinHeap <Pair> Q = new MinHeap<>();
-      ArrayList <Pair> V = new ArrayList<>();
-      int[] Distance =new int[vertices.size()];
-      int[] predecessor = new int[vertices.size()];
+      MinHeap <Vertex> Q = new MinHeap<>();
+      ArrayList <Edge> V = new ArrayList<>();
       int MST = 0;
+      int[] Parent = new int[vertices.size()];
       int Holder = 0;
+      Arrays.fill(Parent, -1);
 
-      Arrays.fill(Distance, Integer.MAX_VALUE);
-      Arrays.fill(predecessor,-1);
+
       if (vertices.size()>0){
-          Distance[0]=0;
           vertices.get(0).dist = 0;
       }
 
       for (int i = 0; i < vertices.size(); i++) {
-          V.add(new Pair(Distance[i], i));
-          Q.Insert(new Pair(Distance[i], i));
+          Q.Insert(vertices.get(i));
       }
 
       while (!Q.isEmpty()){
-          Pair u=Q.extractMin();
-          for (int v = 0; v < vertices.size(); v++) {
-                  if(u.distance<Distance[v] && 1==vertices.get(u.index).OutEdges.get(v).to.name.compareTo(String.valueOf(v)))
-                  {
-                          Distance[v] = vertices.get(u.index).OutEdges.get(v).weight;
-                          predecessor[v] = u.index;
-                          int pos = Q.getPosition(V.get(v));
-                          V.get(v).distance = vertices.get(u.index).OutEdges.get(v).weight;
-                          Q.decreasekey(pos);
+          Vertex u = Q.extractMin();
+          for (int e = 0; e < u.OutEdges.size(); e++) {
+              Edge E = u.OutEdges.get(e);
+              if(E.weight < E.to.dist) {
+                  E.to.dist = E.weight;
+                  Holder = E.weight;
+                  Parent[Integer.parseInt(E.to.name)] = Integer.parseInt(u.name);
               }
           }
-          MST+=Distance[u.index];
+          int pos = Q.getPosition(u);
+          Q.decreasekey(pos);
       }
-      System.out.println("Minimum spanning tree Dsitance: " +MST);
-      for(int i=0; i< vertices.size();i++)
-      {
-          System.out.println(" parent "+ predecessor[i] + " to " + i + " EdgeWeight: " + Distance[i]);
+
+      for (int i = 0; i < vertices.size(); i++) {
+          System.out.println("vekter " + i + " har vægt " + vertices.get(i).dist + " og har parent " + Parent[i]);
+          MST = MST + vertices.get(i).dist;
       }
+      System.out.println("Minimum spanning tree Disitance: " +MST);
   }
 
 

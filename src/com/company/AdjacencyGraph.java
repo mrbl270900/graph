@@ -33,12 +33,9 @@ public class AdjacencyGraph {
   }
   public void prim(){
       MinHeap <Vertex> Q = new MinHeap<>();
-      ArrayList <Edge> V = new ArrayList<>();
       int MST = 0;
       int[] Parent = new int[vertices.size()];
-      int Holder = 0;
       Arrays.fill(Parent, -1);
-
 
       if (vertices.size()>0){
           vertices.get(0).dist = 0;
@@ -54,7 +51,6 @@ public class AdjacencyGraph {
               Edge E = u.OutEdges.get(e);
               if(E.weight < E.to.dist) {
                   E.to.dist = E.weight;
-                  Holder = E.weight;
                   Parent[Integer.parseInt(E.to.name)] = Integer.parseInt(u.name);
               }
           }

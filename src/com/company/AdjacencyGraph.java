@@ -37,25 +37,28 @@ public class AdjacencyGraph {
       int[] Parent = new int[vertices.size()];
       Arrays.fill(Parent, -1);
 
-      if (vertices.size()>0){
-          vertices.get(0).dist = 0;
-      }
-
       for (int i = 0; i < vertices.size(); i++) {
           Q.Insert(vertices.get(i));
       }
 
+      if (vertices.size()>0){
+          vertices.get(0).dist = 0;
+      }
+      int pos = Q.getPosition(vertices.get(0));
+      Q.decreasekey(pos);
+
       while (!Q.isEmpty()){
           Vertex u = Q.extractMin();
+          System.out.println(u.name);
           for (int e = 0; e < u.OutEdges.size(); e++) {
               Edge E = u.OutEdges.get(e);
               if(E.weight < E.to.dist) {
                   E.to.dist = E.weight;
                   Parent[Integer.parseInt(E.to.name)] = Integer.parseInt(u.name);
               }
+              pos = Q.getPosition(u);
+              Q.decreasekey(pos);
           }
-          int pos = Q.getPosition(u);
-          Q.decreasekey(pos);
       }
 
       for (int i = 0; i < vertices.size(); i++) {

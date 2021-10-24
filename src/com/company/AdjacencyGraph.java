@@ -65,7 +65,10 @@ public class AdjacencyGraph {
           System.out.println("vekter " + i + " har vægt " + vertices.get(i).dist + " og har parent " + Parent[i]);
           MST = MST + vertices.get(i).dist;
       }
-      System.out.println("Minimum spanning tree Disitance: " +MST);
+      System.out.println("Minimum spanning tree Disitance: " + MST + " Km");
+      int Price = MST * 100000;
+      System.out.println("Price of the cable is: " + Price + " Kr");
+
   }
 
 

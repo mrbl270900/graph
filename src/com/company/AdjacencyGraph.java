@@ -50,7 +50,6 @@ public class AdjacencyGraph {
       while (!Q.isEmpty()){
           Vertex u = Q.extractMin();
           inMST.add(u);
-          System.out.println("Den vi kigger på " + u.name);
           for (int e = 0; e < u.OutEdges.size(); e++) {
               Edge E = u.OutEdges.get(e);
               if(E.weight < E.to.dist && !inMST.contains(E.to)) {

@@ -55,9 +55,9 @@ public class AdjacencyGraph {
               if(E.weight < E.to.dist) {
                   E.to.dist = E.weight;
                   Parent[Integer.parseInt(E.to.name)] = Integer.parseInt(u.name);
+                  pos = Q.getPosition(E.to);
+                  Q.decreasekey(pos);
               }
-              pos = Q.getPosition(u);
-              Q.decreasekey(pos);
           }
       }
 

@@ -2,7 +2,6 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.PriorityQueue;
 
 public class AdjacencyGraph {
   ArrayList<Vertex> vertices;
@@ -36,6 +35,7 @@ public class AdjacencyGraph {
       int MST = 0;
       int[] Parent = new int[vertices.size()];
       Arrays.fill(Parent, -1);
+      ArrayList<Vertex> inMST = new ArrayList<>();
 
       for (int i = 0; i < vertices.size(); i++) {
           Q.Insert(vertices.get(i));
@@ -49,10 +49,11 @@ public class AdjacencyGraph {
 
       while (!Q.isEmpty()){
           Vertex u = Q.extractMin();
-          System.out.println(u.name);
+          inMST.add(u);
+          System.out.println("Den vi kigger på " + u.name);
           for (int e = 0; e < u.OutEdges.size(); e++) {
               Edge E = u.OutEdges.get(e);
-              if(E.weight < E.to.dist) {
+              if(E.weight < E.to.dist && !inMST.contains(E.to)) {
                   E.to.dist = E.weight;
                   Parent[Integer.parseInt(E.to.name)] = Integer.parseInt(u.name);
                   pos = Q.getPosition(E.to);

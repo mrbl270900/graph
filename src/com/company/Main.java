@@ -3,33 +3,8 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        MatrixGraph matrix = new MatrixGraph(7);
-
-        matrix.addEdge(0,1,1);
-        matrix.addEdge(0,2,5);
-        matrix.addEdge(0,4,3);
-
-        matrix.addEdge(1,4,1);
-        matrix.addEdge(1,5,7);
-
-        matrix.addEdge(2,3,1);
-
-        matrix.addEdge(3,4,1);
-        matrix.addEdge(3,5,1);
-
-        matrix.addEdge(4,2,1);
-        matrix.addEdge(4,3,3);
-        matrix.addEdge(4,5,3);
-        matrix.addEdge(4,6,4);
-        matrix.addEdge(4,6,1);
-
-
-
-        matrix.printGraph();
-        matrix.MSTPrims();
-        System.out.println(" ");
-
         AdjacencyGraph MyGraph=new AdjacencyGraph();
+
         Vertex Eskildstrup = new Vertex("0");
         Vertex Haslev = new Vertex("1");
         Vertex Holbaek = new Vertex( "2");
@@ -53,14 +28,14 @@ public class Main {
         MyGraph.addVertex(Jaergerspris);
         MyGraph.addVertex(Kalundborg);
         MyGraph.addVertex(Korsoer);
-        MyGraph.addVertex(Koege);
+        MyGraph.addVertex(Roskilde);
         MyGraph.addVertex(Maribo);
         MyGraph.addVertex(Naestved);
         MyGraph.addVertex(Ringsted);
         MyGraph.addVertex(Slagelse);
         MyGraph.addVertex(Soroe);
         MyGraph.addVertex(Vordingborg);
-        MyGraph.addVertex(Roskilde);
+        MyGraph.addVertex(Koege);
         MyGraph.addVertex(Nykoebing_F);
         MyGraph.addVertex(Nakskov);
 
@@ -155,7 +130,5 @@ public class Main {
 
         MyGraph.PrintGraph();
         MyGraph.prim();
-
-
     }
 }
